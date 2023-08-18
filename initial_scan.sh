@@ -16,10 +16,10 @@ mkdir -p ~/recon/"$project"
 working_dir="~/recon/$Project"
 
 # Gather all subdomains related to the scope
-cat "$domain" | subfinder | anew > ~/recon/$project/domains
+cat "$domain" | subfinder | anew > ~/recon/$project/domains.txt
 
 #gather all known IPs related to domains
-input_file="~/recon/"$project"/domains"   # Replace with your input file name
+input_file="~/recon/"$project"/domains.txt"   # Replace with your input file name
 output_file="~/recon/"$project"/hosts" # Replace with your output file name
 
 while IFS= read -r domain; do
