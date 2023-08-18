@@ -19,11 +19,11 @@ working_dir="~/recon/$Project"
 cat "$domain" | subfinder | anew > ~/recon/$project/domains
 
 #gather all known IPs related to domains
-input_file="~/recon/$project/domains"   # Replace with your input file name
-output_file="~/recon/$project/hosts" # Replace with your output file name
+input_file="~/recon/"$project"/domains"   # Replace with your input file name
+output_file="~/recon/"$project"/hosts" # Replace with your output file name
 
 while IFS= read -r domain; do
-    ip=$(host -t A "$domain"
+    ip=$(host -t A "$domain")
     if [ -n "$ip" ]; then
         echo "$ip" | anew >> "$output_file"
     fi
