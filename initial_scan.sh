@@ -9,22 +9,22 @@ if [ $# -eq 0 ]; then
 fi
 
 # send domains to initial query
-project="$1"
-domain="$2"
+project=$1
+domain=$2
 
-mkdir -p ~/recon/"$project"
-working_dir="~/recon/$Project"
+mkdir -p ~/recon/$project
+working_dir=~/recon/$Project
 
 # Gather all subdomains related to the scope
-cat "$domain" | subfinder | anew > ~/recon/$project/domains
+cat $domain | subfinder | anew > ~/recon/$project/domains
 
 #gather all known IPs related to domains
-input_file="~/recon/"$project"/domains"   # Replace with your input file name
-output_file="~/recon/"$project"/hosts" # Replace with your output file name
+input_file=/home/frank/recon/$project/domains
+output_file=/home/frank/recon/$project/hosts
 
 while IFS= read -r domain; do
-    ip=$(host -t A "$domain")
+    ip=$(host -t A $domain)
     if [ -n "$ip" ]; then
-        echo "$ip" >> "$output_file"
+        echo $ip >> $output_file
     fi
-done < "$input_file"
+done < $input_file
