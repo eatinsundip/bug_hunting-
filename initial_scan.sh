@@ -25,6 +25,6 @@ output_file="~/recon/"$project"/hosts" # Replace with your output file name
 while IFS= read -r domain; do
     ip=$(host -t A "$domain")
     if [ -n "$ip" ]; then
-        echo "$ip" | anew >> "$output_file"
+        echo "$ip" >> "$output_file"
     fi
 done < "$input_file"
