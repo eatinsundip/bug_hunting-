@@ -16,19 +16,17 @@ mkdir -p ~/recon/"$project"
 working_dir="~/recon/$Project"
 
 # Gather all subdomains related to the scope
-cat "$domain" | subfinder > domains
+cat "$domain" | subfinder > ~/recon/$project/domains
 
 #gather all known IPs related to domains
-input_file="domains"   # Replace with your input file name
-output_file="IPs" # Replace with your output file name
+input_file="~/recon/$project/domains"   # Replace with your input file name
+output_file="~/recon/$project/IPs" # Replace with your output file name
 
 while IFS= read -r domain; do
     ip=$(host -t A "$domain" | grep "has address" | awk '{print $NF}')
     if [ -n "$ip" ]; then
-        echo "$domain: $ip" >> "$output_file"
+        echo "$ip" >> "$output_file"
     else
         echo "$domain: Could not resolve" >> "$output_file"
     fi
 done < "$input_file"
-
-echo "IP addresses have been retrieved and saved to $output_file"
