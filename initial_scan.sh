@@ -22,6 +22,8 @@ cat "$domain" | subfinder | anew > ~/recon/$project/domains.txt
 input_file="~/recon/"$project"/domains.txt"   # Replace with your input file name
 output_file="~/recon/"$project"/hosts" # Replace with your output file name
 
+ls -la ~/recon/$project/
+
 while IFS= read -r domain; do
     ip=$(host -t A "$domain")
     if [ -n "$ip" ]; then
