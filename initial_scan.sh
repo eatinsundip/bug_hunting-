@@ -12,7 +12,7 @@ fi
 project="$1"
 domain="$2"
 
-mkdir ~/recon/"$project"
-cd ~/recon/"$project"
+mkdir -p ~/recon/"$project"
+working_dir="~/recon/$Project"
 
 cat "$domain" | subfinder > subdomains
