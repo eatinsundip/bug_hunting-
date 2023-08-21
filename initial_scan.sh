@@ -61,7 +61,7 @@ fi
 # start enumeration of the project scope.
 discord_notify="notify -pc $project_config"
 domains=$new_directory_path/domains.txt
-if [ ! -f $domains]; then
+if [ ! -f "$domains"]; then
     cat $scope_file | subfinder -all | anew > $domains
 else
     echo "the file already exists"
