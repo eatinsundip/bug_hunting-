@@ -60,4 +60,10 @@ read -p "Enter discord_webhook_url: " discord_webhook_url
 echo "    discord_webhook_url: \"$discord_webhook_url\"" >> $project_config
 
 # start enumeration of the project scope.
-cat $scope_file | subfinder -all | anew | notify -pc $project_config
+discord_notify="notify -pc $project_config"
+domains=$new_directory_path/domains.txt
+if [ ! -f $domains]; then
+    cat $scope_file | subfinder -all | anew > $domains
+else
+    echo "the file already exists"
+    cat $scope_file | subfinder -all | anew $domains | notify -pc
