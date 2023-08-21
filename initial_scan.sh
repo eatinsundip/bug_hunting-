@@ -34,5 +34,3 @@ cat $input_file | httprobe -c 80 | anew > ~/recon/$project/websites
 
 # gather header and body daya of main pages on sites
 cat ~/recon/$project/websites | fff -d 1 -S -o ~/recon/$project/roots
-
-# nmap all known IPs for all 65535 tcp ports
