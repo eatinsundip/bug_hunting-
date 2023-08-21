@@ -51,8 +51,8 @@ fi
 
 # Edit new project_config with discord data.
 echo "Creating project config file: $project_config"
-echo "discord:" >> "$project_config"
-echo "  - id: $project" >> "$project_config"
+echo "discord:" >> $project_config
+echo "  - id: "$project >> $project_config
 echo "    discord_channel: $project >> $project_config"
 echo "    discord_username: $project >> $project_config"
 echo "    discord_format: \"{{data}}\" >> $project_config"
