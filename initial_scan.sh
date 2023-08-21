@@ -38,7 +38,7 @@ if [ ! -f "$scope_file" ]; then
     cat "$scope_file"
 else
     echo "Scope file already exists with the following content:"
-    cat "$scope_file"echo test | notify 
+    cat "$scope_file"
 fi
 
 # Create custom notify config
