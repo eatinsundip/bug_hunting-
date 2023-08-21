@@ -2,35 +2,34 @@
 
 export PATH=$PATH:~/go/bin
 
-#check if arguement was provided
+#check if arguement was provided.
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 <Project Name> <scope file>"
+  echo "Usage: $0 <Project Name>"
   exit 1
 fi
 
-# send domains to initial query
-project=$1
-domain=$2
+# Check and create ~/recon if it doesn't already exist.
+directory=~/recon
+if [ ! -d "$directory" ]; then
+    mkdir "$directory"
+fi
 
-mkdir -p ~/recon/$project
-working_dir=~/recon/$Project
+# Check and create project folder
+project="$1"
+new_directory_path="$directory/$project"
+if [ ! -d "$new_directory_path" ]; then
+    mkdir "$new_directory_path"
+fi
 
-# Gather all subdomains related to the scope
-cat $domain | subfinder | anew > ~/recon/$project/domains
-
-#gather all known IPs related to domains
-input_file=/home/frank/recon/$project/domains
-output_file=/home/frank/recon/$project/hosts
-
-while IFS= read -r domain; do
-    ip=$(host -t A $domain)
-    if [ -n "$ip" ]; then
-        echo $ip >> $output_file
-    fi
-done < $input_file
-
-# Build list of non 400 error websites
-cat $input_file | httprobe -c 80 | anew > ~/recon/$project/websites
-
-# gather header and body daya of main pages on sites
-cat ~/recon/$project/websites | fff -d 1 -S -o ~/recon/$project/roots
+Check and/or create scope file for the project
+scope_file="$new_directory_path/scope.txt"
+if [ ! -f "$scope_file" ]; then
+    echo "Scope file does not exist. Creating it..."
+    read -p "Enter the content for the scope file: " scope_content
+    echo "$scope_content" > "$scope_file"
+    echo "Scope file created with content:"
+    cat "$scope_file"
+else
+    echo "Scope file already exists with the following content:"
+    cat "$scope_file"
+fi
