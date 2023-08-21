@@ -25,9 +25,16 @@ Check and/or create scope file for the project
 scope_file="$new_directory_path/scope.txt"
 if [ ! -f "$scope_file" ]; then
     echo "Scope file does not exist. Creating it..."
-    read -p "Enter the content for the scope file: " scope_content
-    echo "$scope_content" > "$scope_file"
-    echo "Scope file created with content:"
+    echo "Enter scope entries. Press Ctrl+D when done:"
+    while true; do
+        read -p "Enter scope entry: " scope_entry
+        echo "$scope_entry" >> "$scope_file"
+        read -p "Add another entry? (y/n): " choice
+        if [[ "$choice" != "y" ]]; then
+            break
+        fi
+    done
+    echo "Scope file created with the following content:"
     cat "$scope_file"
 else
     echo "Scope file already exists with the following content:"
