@@ -60,4 +60,4 @@ read -p "Enter discord_webhook_url: " discord_webhook_url
 echo "    discord_webhook_url: \"$discord_webhook_url\"" >> $project_config
 
 # start enumeration of the project scope.
-cat $scope_file | subfinder -all -d | anew | notify -config \"$project_config\"
+cat $scope_file | subfinder -all -d | anew | notify -pc \"$project_config\"
