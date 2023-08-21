@@ -49,6 +49,8 @@ if [ ! -f "$project_config" ]; then
     echo "File copied to $project_config"
 fi
 
+ls ~/.config/notify
+
 Edit new project_config with discord data.
 echo "Creating project config file: $project_config"
 echo "discord:" >> "$project_config"
