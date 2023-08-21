@@ -66,3 +66,4 @@ if [ ! -f $domains]; then
 else
     echo "the file already exists"
     cat $scope_file | subfinder -all | anew $domains | notify -pc
+fi
