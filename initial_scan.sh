@@ -45,11 +45,9 @@ fi
 config_source="~/.config/notify/config.yaml"
 project_config="$recon_directory/$project.yaml"
 if [ ! -f "$project_config" ]; then
-    cp "$config_source" "$project_config"
+    cp $config_source $project_config
     echo "File copied to $project_config"
 fi
-
-ls ~/.config/notify
 
 Edit new project_config with discord data.
 echo "Creating project config file: $project_config"
