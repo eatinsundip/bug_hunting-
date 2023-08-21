@@ -58,7 +58,7 @@ if [ ! -f "$project_config" ]; then
     echo "    discord_webhook_url: \"$discord_webhook_url\"" >> $project_config
 fi
 
-# start enumeration of the project scope.
+# Subdomain Enumeration
 discord_notify="notify -pc $project_config"
 domains=$new_directory_path/domains.txt
 if [ ! -f "$domains" ]; then
@@ -67,3 +67,10 @@ else
     echo "the file already exists"
     cat $scope_file | subfinder -all | anew $domains | notify -pc $project_config
 fi
+
+# IP enumeration
+ip_file=$new_directory_path/ips.txt
+if [ ! -f "$ip_file" ]; then
+    cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew > $ip_file
+else
+    cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew $ip_file | $discord_notify
