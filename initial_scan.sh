@@ -47,17 +47,16 @@ project_config=~/.config/notify/$project.yaml
 if [ ! -f "$project_config" ]; then
     cp $config_source $project_config
     echo "File copied to $project_config"
+    # Edit new project_config with discord data.
+    echo "Creating project config file: $project_config"
+    echo "discord: " >> $project_config
+    echo "  - id: $project" >> $project_config
+    echo "    discord_channel: $project" >> $project_config
+    echo "    discord_username: $project" >> $project_config
+    echo "    discord_format: \"{{data}}\"" >> $project_config
+    read -p "Enter discord_webhook_url: " discord_webhook_url
+    echo "    discord_webhook_url: \"$discord_webhook_url\"" >> $project_config
 fi
-
-# Edit new project_config with discord data.
-echo "Creating project config file: $project_config"
-echo "discord: " >> $project_config
-echo "  - id: $project" >> $project_config
-echo "    discord_channel: $project" >> $project_config
-echo "    discord_username: $project" >> $project_config
-echo "    discord_format: \"{{data}}\"" >> $project_config
-read -p "Enter discord_webhook_url: " discord_webhook_url
-echo "    discord_webhook_url: \"$discord_webhook_url\"" >> $project_config
 
 # start enumeration of the project scope.
 discord_notify="notify -pc $project_config"
