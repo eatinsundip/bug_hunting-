@@ -43,7 +43,7 @@ fi
 
 # Create custom notify config
 config_source=~/.config/notify/config.yaml
-project_config="$recon_directory/$project.yaml"
+project_config=~/.config/notify/$project.yaml
 if [ ! -f "$project_config" ]; then
     cp $config_source $project_config
     echo "File copied to $project_config"
