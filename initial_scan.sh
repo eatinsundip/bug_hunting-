@@ -74,3 +74,4 @@ if [ ! -f "$ip_file" ]; then
     cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew > $ip_file
 else
     cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew $ip_file | $discord_notify
+fi
