@@ -21,7 +21,7 @@ if [ ! -d "$new_directory_path" ]; then
     mkdir "$new_directory_path"
 fi
 
-Check and/or create scope file for the project
+# Check and/or create scope file for the project
 scope_file="$new_directory_path/scope.txt"
 if [ ! -f "$scope_file" ]; then
     echo "Scope file does not exist. Creating it..."
@@ -61,7 +61,7 @@ fi
 # start enumeration of the project scope.
 discord_notify="notify -pc $project_config"
 domains=$new_directory_path/domains.txt
-if [ ! -f "$domains"]; then
+if [ ! -f "$domains" ]; then
     cat $scope_file | subfinder -all | anew > $domains
 else
     echo "the file already exists"
