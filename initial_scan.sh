@@ -73,5 +73,13 @@ ip_file=$new_directory_path/ips.txt
 if [ ! -f "$ip_file" ]; then
     cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew > $ip_file
 else
-    cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew $ip_file | $discord_notify
+    cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew $ip_file
+fi
+
+# Check for active websites
+web_file=$new_directory_path/websites.txt
+if [ ! -f "$web_file" ]; then
+    cat $domains | httprobe -c 80 | anew > $web_file
+else
+    cat $domains | httprobe -c 80 | anew > $web_file | notify -pc $project_config
 fi
