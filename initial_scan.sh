@@ -83,3 +83,11 @@ if [ ! -f "$web_file" ]; then
 else
     cat $domains | httprobe -c 80 | anew > $web_file | notify -pc $project_config
 fi
+
+# Pull Website Header Information
+roots_dir=$new_directory_path/roots
+if [ ! -d "$roots_dir" ]; then
+    cat $web_file | fff -d 1 -S -o $roots_dir
+else
+    cat $web_file | fff -d 1 -S -o $roots_dir | anew
+fi
