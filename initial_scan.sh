@@ -71,9 +71,9 @@ fi
 # IP enumeration
 ip_file=$new_directory_path/ips.txt
 if [ ! -f "$ip_file" ]; then
-    cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew > $ip_file
+    cat $domains | xargs -l host -t A | awk '/has address/ {print $NF}' | anew > $ip_file
 else
-    cat $domains | xargs -l host | awk '/has address/ {print $NF}' | anew $ip_file
+    cat $domains | xargs -l host -t A | awk '/has address/ {print $NF}' | anew $ip_file
 fi
 
 # Check for active websites
