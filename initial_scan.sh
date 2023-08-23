@@ -92,4 +92,10 @@ else
     cat $web_file | fff -d 1 -S -o $roots_dir | anew
 fi
 
-#gf 
+# nmap scan first 1000 ports of all seen IPs
+nmap_file=$new_directory_path/nmap_full.txt
+if [ ! -f "$nmap" ]; then
+    nmap $(xargs -a ips.txt) >> nmap_full.txt
+else
+    nmap $(xargs -a $ip_file) >> $nmap_file | anew $nmap_file | notify -pc $project_config
+fi
