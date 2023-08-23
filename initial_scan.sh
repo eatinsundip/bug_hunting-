@@ -95,7 +95,7 @@ fi
 # nmap scan first 1000 ports of all seen IPs
 nmap_file=$new_directory_path/nmap_full.txt
 if [ ! -f "$nmap_file" ]; then
-    nmap $(xargs -a $ip_file) >> nmap_full.txt
+    nmap $(xargs -a $ip_file) >> $nmap_file
 else
     nmap $(xargs -a $ip_file) >> $nmap_file | anew $nmap_file | notify -pc $project_config
 fi
