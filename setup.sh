@@ -1,11 +1,5 @@
 #/bin/bash
 
-#check if arguement was provided.
-if [ $# -eq 0 ]; then
-  echo "Usage: $0 <Mullvad ID>"
-  exit 1
-fi
-
 # install for my version of Ubuntu but can add more support if interested.
 apt update && apt install golang-go -y
 go install github.com/tomnomnom/assetfinder@latest
@@ -26,7 +20,5 @@ wget --content-disposition https://mullvad.net/download/app/deb/latest
 sudo apt install -y ./MullvadVPN-*_amd64.deb
 sudo rm -rf ./MullvadVPN-*_amd64.deb
 mullvad account login
-$1
-
 
 echo "Finished"
