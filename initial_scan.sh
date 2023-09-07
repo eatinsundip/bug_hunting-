@@ -97,5 +97,5 @@ nmap_file=$new_directory_path/nmap_full.txt
 if [ ! -f "$nmap_file" ]; then
     nmap $(xargs -a $ip_file) >> $nmap_file
 else
-    nmap $(xargs -a $ip_file) >> $nmap_file | anew $nmap_file | notify -pc $project_config
+    nmap $(xargs -a $ip_file) | anew > $nmap_file | notify -pc $project_config
 fi
