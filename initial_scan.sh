@@ -1,6 +1,8 @@
 #/bin/bash
 
-export PATH=$PATH:~/go/bin
+# This line below was only needed before I made some updates to how GO is installed. I used this resource.
+# https://tecadmin.net/how-to-install-go-on-ubuntu-20-04/
+# export PATH=$PATH:~/go/bin
 
 #check if arguement was provided.
 if [ $# -eq 0 ]; then
