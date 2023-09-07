@@ -15,5 +15,9 @@ rm -rf gf
 go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 go install -v github.com/projectdiscovery/httpx/cmd/httpx@latestgo install -v github.com/projectdiscovery/notify/cmd/notify@latest
 go install -v github.com/projectdiscovery/nuclei/cmd/nuclei@latest
+wget --content-disposition https://mullvad.net/download/app/deb/latest
+sudo apt install -y ./MullvadVPN-*_amd64.deb
+sudo rm -rf ./MullvadVPN-*_amd64.deb
+mullvad connect && mullvad status
 
 echo "Finished"
